@@ -4,12 +4,17 @@
 <p>Si ya se ha registrado inicie sesión <a href="auth/login">aquí</a>.</p>
 
 <div class="container py-lg-5">
-  <form>
     <form action="" method="POST">
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit" class="btn btn-primary" value="Registrar" />
   </form>
 </div>
+
+{% if form.errors %}
+  <p style="color: red">
+    Error creando usuario, intenta de nuevo.
+  </p>
+  {% endif %} 
 
 {% endblock %}
