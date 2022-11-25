@@ -1,0 +1,15 @@
+{% extends 'template.html' %} {% block content %}
+
+<h1 class="mt-5">Registro</h1>
+<p>Si ya se ha registrado inicie sesión <a href="auth/login">aquí</a>.</p>
+
+<div class="container py-lg-5">
+  <form>
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-primary" value="Registrar" />
+  </form>
+</div>
+
+{% endblock %}
