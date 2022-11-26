@@ -150,7 +150,7 @@
               </div>
               {% if user.is_superuser %}
               <div class="sb-sidenav-menu-heading">Configuración</div>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'configuration:category-product-list' %}">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-tachometer-alt"></i>
                 </div>
