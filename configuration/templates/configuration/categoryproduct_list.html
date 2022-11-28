@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block app_content %} 
+<a class="button_custom" href="{% url 'configuration:category-product-add' %}">Crear nueva Categoria</a>
 {% for category_product in categoryproduct_list %}
 <!-- Post preview-->
 <div class="post-preview">
