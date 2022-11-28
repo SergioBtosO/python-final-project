@@ -10,8 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from configuration.forms import CategoryProductform
 from configuration.models import CategoryProduct
 
-from configuration.forms import UserInfoform
-from configuration.models import UserInfo
+
 
 from configuration.forms import OrderStateform
 from configuration.models import OrderState
@@ -74,37 +73,7 @@ class CategoryProductDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("configuration:category-product-list")    
 
 
-class UserInfoListView(ListView):
-    model = UserInfo
-    paginate_by = 5
 
-class UserInfoDetailView(DetailView):
-    model = UserInfo
-    fields = ["user-name", "email"]
-
-class UserInfoCreateView(LoginRequiredMixin, CreateView):
-    model = UserInfo
-    success_url = reverse_lazy("configuration:user-list")
-
-    form_class = UserInfo
-
-    def form_valid(self, form):
-        """Filter to avoid duplicate UserInfo"""
-        data = form.cleaned_data
-        actual_objects = UserInfo.objects.filter(name=data["name"]).count()
-        if actual_objects:
-            messages.error(
-                self.request,
-                f"El usuario {data['name']} ya existe",
-            )
-            form.add_error("name", ValidationError("Acción no válida"))
-            return super().form_invalid(form)
-        else:
-            messages.success(
-                self.request,
-                f"Usuario: {data['name']}. Creado exitosamente!",
-            )
-            return super().form_valid(form)
 
 
 class OrderStateListView(ListView):
