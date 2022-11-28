@@ -1,14 +1,14 @@
 {% extends "dashboard/template.html" %}
 
 {% block app_header %}  
-    Orders detail
+    Order detail
 {% endblock %}
 
 {% block app_content %} 
 
 <div class="post-preview">
     <h3 class="post-subtitle">
-        Nombre: {{ orders.name }}
+        Nombre: {{ order.name }}
         
     </h3>
     <p class="card-text">
@@ -16,12 +16,12 @@
     </p>
     <hr class="my-4">
     <p style="text-align: center">
-        <a href="{% url 'configuration:orders-update' orders.id %}">
-            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Categoria
+        <a href="{% url 'configuration:order-update' order.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Orden
         </a>
         &ensp; | &ensp;
-        <a href="{% url 'configuration:orders-delete' orders.id %}">
-            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Categoria
+        <a href="{% url 'configuration:order-delete' order.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Orden
         </a>
     </p>
 </div>

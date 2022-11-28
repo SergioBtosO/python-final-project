@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'home',
     'dashboard',
     'configuration',
+    'order',
+    'product',
     
 ]
 

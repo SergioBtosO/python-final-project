@@ -12,6 +12,7 @@ class Product(models.Model):
     category_id = models.CharField(default= False)
     user_id = models.ForeignKey (primary_key=True)
     color = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='products', null=True, blank=True)
 
     class Meta:
         ordering = ['id']
