@@ -1,0 +1,16 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    User info detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    <h3 class="post-subtitle">
+        Nombre: {{ userinfo.name }}
+        
+    </h3>
+    
+</div>
+{% endblock %}

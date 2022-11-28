@@ -1,0 +1,28 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Order state detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    <h3 class="post-subtitle">
+        Nombre: {{ orderstate.name }}
+        
+    </h3>
+    <p class="card-text">
+        {{ categoryproduct.description|safe}}
+    </p>
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'configuration:category-product-update' categoryproduct.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Categoria
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'configuration:category-product-delete' categoryproduct.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Categoria
+        </a>
+    </p>
+</div>
+{% endblock %}

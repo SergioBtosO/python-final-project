@@ -1,0 +1,20 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    User info list
+{% endblock %}
+
+{% block app_content %} 
+{% for User in User_list %}
+<!-- Post preview-->
+<div class="post-preview">
+    <a href="{% url 'configuration:user-info-detail' user-info.id %}">
+        <h2 class="post-title"> Nombre:  {{ user.name }}</h2>
+        
+    </a>
+   
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+{% endfor %}
+{% endblock %}

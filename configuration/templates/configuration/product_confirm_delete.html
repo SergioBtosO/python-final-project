@@ -1,0 +1,17 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Product confirm delete
+{% endblock %}
+
+{% block app_content %} 
+
+<h1>Estás seguro de eliminar el producto: {{ product.name }}?</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Si, eliminar.">
+    <a class="btn btn-primary" href="{% url 'configuration:product-list' %}" >Cancelar</a>
+</form>
+
+{% endblock %}

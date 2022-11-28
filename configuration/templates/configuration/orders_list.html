@@ -1,0 +1,20 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Orders list
+{% endblock %}
+
+{% block app_content %} 
+{% for orders in orders_list %}
+<!-- Post preview-->
+<div class="post-preview">
+    <a href="{% url 'configuration:orders-detail' orders.id %}">
+        <h2 class="post-title"> Nombre:  {{ orders.name }}</h2>
+        
+    </a>
+   
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+{% endfor %}
+{% endblock %}
