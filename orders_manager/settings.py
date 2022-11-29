@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'home',
     'dashboard',
     'configuration',
+    'product',
+    'order',
     
 ]
 
@@ -143,3 +145,6 @@ MESSAGE_TAGS = {
 LOGIN_URL = '/auth/login/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/dashboard/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

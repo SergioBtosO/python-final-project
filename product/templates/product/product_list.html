@@ -1,0 +1,39 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    product list
+{% endblock %}
+
+{% block app_content %} 
+{% for product in product_list %}
+{% if product.user == user or user.is_superuser %}
+<!-- Post preview-->
+<div class="card" style="width: 18rem;">
+    <img src="{{product.imagen.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+
+<div class="post-preview">
+
+
+
+
+
+    <a href="{% url 'product:product-detail' product.id %}">
+        <h2 class="post-title"> Nombre:  {{ product.name }}</h2>
+        {% if user.is_superuser %}
+        <h2 class="post-title"> Dueño:  {{ product.user.username }}</h2>
+        {% endif %}
+    </a>
+   
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+{% endif %}
+{% endfor %}
+{% endblock %}

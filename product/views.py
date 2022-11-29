@@ -18,7 +18,7 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
-    fields = ["name", "description"]
+    fields = ["name", "description","image"]
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
@@ -29,6 +29,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         """Filter to avoid duplicate Product"""
         data = form.cleaned_data
+        form.instance.user = self.request.user
         actual_objects = Product.objects.filter(name=data["name"]).count()
         if actual_objects:
             messages.error(
