@@ -9,7 +9,7 @@ from django.core.validators import MinLengthValidator
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
-    description = RichTextField(max_length= 100)
+    description = RichTextField(max_length= 1000)
     price = models.DecimalField(decimal_places=2,max_digits=11)
     size = models.CharField(max_length=100)
     weigth = models.DecimalField(decimal_places=2,max_digits=11)
