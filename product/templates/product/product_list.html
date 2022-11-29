@@ -9,29 +9,19 @@
 {% if product.user == user or user.is_superuser %}
 <!-- Post preview-->
 <div class="card" style="width: 18rem;">
-    <img src="{{product.imagen.url}}" class="card-img-top" alt="...">
+    <img height="250px" src="{{ product.image.url}}">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title"> Nombre:  {{ product.name }}
+        {% if user.is_superuser %}
+        - <h2 class="post-title"> Dueño:  {{ product.user.username }}</h2>
+        {% endif %}
+    </h5>
+      <p class="card-text">{{product}}</p>
+      <a href="{% url 'product:product-detail' product.id %}" class="btn btn-primary">Ver Más</a>
     </div>
   </div>
+  {{ product.image.url }}
 
-
-<div class="post-preview">
-
-
-
-
-
-    <a href="{% url 'product:product-detail' product.id %}">
-        <h2 class="post-title"> Nombre:  {{ product.name }}</h2>
-        {% if user.is_superuser %}
-        <h2 class="post-title"> Dueño:  {{ product.user.username }}</h2>
-        {% endif %}
-    </a>
-   
-</div>
 <!-- Divider-->
 <hr class="my-4" />
 {% endif %}
