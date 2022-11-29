@@ -8,8 +8,9 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-from product.forms import ProductForm
-from product.models import Product
+from product.forms import ProductForm, QuestionForm
+from product.models import Product,Question
+
 
 # Create your views here.
 class ProductListView(ListView):
@@ -57,3 +58,51 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("product:product-list")
+
+
+class QuestionListView(ListView):
+    model = Question
+    paginate_by = 5
+
+class QuestionDetailView(DetailView):
+    model = Question
+    fields = ["name", "description"]
+
+class QuestionCreateView(LoginRequiredMixin, CreateView):
+    model = Question
+    success_url = reverse_lazy("product:Question-list")
+
+    form_class = QuestionForm
+
+    def form_valid(self, form):
+        """Filter to avoid duplicate Question"""
+        data = form.cleaned_data
+        actual_objects = Question.objects.filter(name=data["name"]).count()
+        if actual_objects:
+            messages.error(
+                self.request,
+                f"La pregunta {data['name']} ya fue formulada",
+            )
+            form.add_error("name", ValidationError("Acción no válida"))
+            return super().form_invalid(form)
+        else:
+            messages.success(
+                self.request,
+                f"pregunta: {data['name']}. enviada!",
+            )
+            return super().form_valid(form)
+
+class QuestionUpdateView(LoginRequiredMixin, UpdateView):
+    model = Question
+    fields = ["name", "description"]
+
+    def get_success_url(self):
+        Question_id = self.kwargs["pk"]
+        return reverse_lazy("product:Question-detail", kwargs={"pk": Question_id})
+
+
+class QuestionDeleteView(LoginRequiredMixin, DeleteView):
+    model = Question
+    success_url = reverse_lazy("product:Question-list")    
+
+
