@@ -1,0 +1,28 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Product detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    <h3 class="post-subtitle">
+        Nombre: {{ product.name }}
+        
+    </h3>
+    <p class="card-text">
+        {{ product.description|safe}}
+    </p>
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'configuration:product-update' product.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Producto
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'configuration:product-delete' product.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Producto
+        </a>
+    </p>
+</div>
+{% endblock %}
