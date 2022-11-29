@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block app_content %} 
+<a class="button_custom" href="{% url 'product:product-add' %}">Crear nuevo producto</a>
+<hr class="my-4" />
 {% for product in product_list %}
 {% if product.user == user or user.is_superuser %}
 <!-- Post preview-->
