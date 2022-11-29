@@ -70,10 +70,7 @@ class ScoreForm(forms.ModelForm):
         fields = ['name', 'value', 'description']
         widget=CKEditorWidget(),
     
- 
-
-
-class OrderStateform(forms.ModelForm):
+class OrderStateForm(forms.ModelForm):
     name = forms.CharField(
         label="Nombre",
         max_length=30,
