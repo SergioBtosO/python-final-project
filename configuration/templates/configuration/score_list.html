@@ -1,0 +1,17 @@
+{% extends "dashboard/template.html" %} 
+{% block app_header %} Puntuaciones {%endblock %} 
+{% block app_content %}
+<a class="button_custom" href="{% url 'configuration:score-add' %}"
+  >Crear nueva Puntuacion</a
+>
+<hr class="my-4" />
+{% for score in score_list %}
+<!-- Post preview-->
+<div class="post-preview">
+  <a href="{% url 'configuration:score-detail' score.id %}">
+    <h2 class="post-title">{{ score.name }}</h2>
+  </a>
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+{% endfor %} {% endblock %}

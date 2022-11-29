@@ -16,4 +16,15 @@ class CategoryProduct(models.Model):
     def __str__(self):
         return f"Category product: {self.name}"
 
+class Score (models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=10)
+    description = RichTextField(max_length=50)
+    value = models.IntegerField()
+
+    class Meta:
+        ordering = ['-value']
+
+    def __str__(self):
+        return f"Score: {self.value} - {self.name}"
 
