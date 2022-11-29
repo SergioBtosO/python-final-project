@@ -1,7 +1,7 @@
 {% extends "dashboard/template.html" %}
 
 {% block app_header %}  
-    Order state form
+    Nuevo estado
 {% endblock %}
 
 {% block app_content %} 
@@ -11,7 +11,7 @@
         {% csrf_token %}
         {{ form.media }} <!-- ckeditor-->
         {{ form.as_p }}
-        <input type="submit" class="btn btn-primary" value="aceptar Orden" />
+        <input type="submit" class="btn btn-primary" value="Guardar" />
     </form>
 </div>
 <!-- Divider-->

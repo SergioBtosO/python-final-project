@@ -47,10 +47,10 @@ class OrderStateform(forms.ModelForm):
         widget=CKEditorWidget(),
     )
 
-    state = forms.CharField(
-        label="Descripción:",
+    state = forms.BooleanField(
+        label="Habilitado:",
         required=False,
-        widget=forms.BooleanField(),
+        widget=forms.CheckboxInput(),
     )
 
     class Meta:

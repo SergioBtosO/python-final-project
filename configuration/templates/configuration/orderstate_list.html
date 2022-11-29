@@ -1,10 +1,12 @@
 {% extends "dashboard/template.html" %}
 
 {% block app_header %}  
-    Order state list
+    Estados de pedidos
 {% endblock %}
 
 {% block app_content %} 
+<a class="button_custom" href="{% url 'configuration:order-state-add' %}"
+  >Crear nuevo estado</a>
 {% for order_state in orderstate_list %}
 <!-- Post preview-->
 <div class="post-preview">
