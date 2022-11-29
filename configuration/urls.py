@@ -15,5 +15,10 @@ urlpatterns = [
     path("score/<int:pk>/detail/", views.ScoreDetailView.as_view(), name="score-detail"),
     path("score/<int:pk>/update/", views.ScoreUpdateView.as_view(), name="score-update"),
     path("score/<int:pk>/delete/", views.ScoreDeleteView.as_view(), name="score-delete"),
+    path("order-state/", views.OrderStateListView.as_view(), name="order-state-list"),
+    path("order-state/add/", views.OrderStateCreateView.as_view(), name="order-state-add"),
+    path("order-state/<int:pk>/detail/", views.OrderStateDetailView.as_view(), name="order-state-detail"),
+    path("order-state/<int:pk>/update/", views.OrderStateUpdateView.as_view(), name="order-state-update"),
+    path("order-state/<int:pk>/delete/", views.OrderStateDeleteView.as_view(), name="order-state-delete"),
 
 ]
