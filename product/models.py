@@ -22,3 +22,19 @@ class Product(models.Model):
 
     def __str__(self):
         return f"product: {self.name}"
+
+class Question(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_from = models.CharField(max_length=30)
+    comment = RichTextField(max_length= 100)
+    date_coment = models.DateField(auto_now_add=True)
+    question_id = models.ForeignKey(primary_key=True)
+    product_id = models.ForeignKey(primary_key=True)
+    
+
+    class Meta:
+        ordering = ['id']
+
+
+    def __str__(self):
+        return f"question: {self.name}"

@@ -1,0 +1,28 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Question detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    <h3 class="post-subtitle">
+        Nombre: {{ question.name }}
+        
+    </h3>
+    <p class="card-text">
+        {{ question.description|safe}}
+    </p>
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'configuration:question-update' question.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar pregunta
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'configuration:question-delete' question.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar pregunta
+        </a>
+    </p>
+</div>
+{% endblock %}
