@@ -9,9 +9,27 @@
 <div class="post-preview">
     
     <h3 class="post-subtitle">
-        Nombre: {{ product.name }}
-        
+        Nombre: {{ product.name }}    
     </h3>
+    <h5 class="post-subtitle">
+        Categoria: {{ product.category }}    
+    </h5>
+    <h5 class="post-subtitle">
+        Talla: {{ product.size }}    
+    </h5>
+    <h5 class="post-subtitle">
+        Peso: {{ product.wheigth }}    
+    </h5>
+    <h5 class="post-subtitle">
+        Color: {{ product.color }}    
+    </h5>
+    <h5 class="post-subtitle">
+        Precio: {{ product.price }}    
+    </h5>
+    <h3 class="post-subtitle">
+        Descripcion: {{ product.description }}    
+    </h3>
+    
     <p class="card-text">
         {{ product.description|safe}}
     </p>
