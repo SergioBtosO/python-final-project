@@ -1,0 +1,27 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Order state detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    <h3 class="post-subtitle">
+        Nombre: {{ orderstate.name }}
+        
+    </h3>
+    <p class="card-text">
+        {{ orderstate.description|safe}}
+    </p>
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'configuration:order-state-update' orderstate.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar estado
+        &ensp; | &ensp;
+        <a href="{% url 'configuration:order-state-delete' orderstate.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar estado
+        </a>
+    </p>
+</div>
+{% endblock %}
