@@ -11,7 +11,7 @@
 <form action="" method="POST">
     {% csrf_token %}
     <input class="btn btn-danger" type="submit" value="Si, eliminar.">
-    <a class="btn btn-primary" href="{% url 'configuration:product-list' %}" >Cancelar</a>
+    <a class="btn btn-primary" href="{% url 'product:product-list' %}" >Cancelar</a>
 </form>
 
 {% endblock %}
