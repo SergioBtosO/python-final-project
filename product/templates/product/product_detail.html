@@ -25,5 +25,27 @@
             <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Producto
         </a>
     </p>
+    <!-- Divider-->
+    <hr class="my-4" />
+
+    <!-- Question creation -->
+    <form method="POST" action="{% url 'product:question-create' product.id %}">
+        {% csrf_token %}
+        {{ question_form }}
+    <input type="submit" value="Enviar Pregunta">
+    </form>
+    {% if not questions %}
+        <p></p>
+    {% endif %}
+
+    <!-- Question list -->
+    {% for question in questions %}
+        <p> {{ question.question }}
+            ({{ question.user_from.username }} | {{ question.updated_at }})
+            {% if user == question.user_from or user.is_superuser %}
+            <a href="{% url 'product:question-delete' question.id %}"><i class="fa fa-trash" style="color: #881a1a;"></i></a>
+            {% endif %}
+        </p>
+    {% endfor %}
 </div>
 {% endblock %}

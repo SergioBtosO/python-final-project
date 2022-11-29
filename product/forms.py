@@ -4,32 +4,31 @@ from django import forms
 from product.models import Product
 from product.models import Question
 
+
 class ProductForm(forms.ModelForm):
-      class Meta:
+    class Meta:
         model = Product
-        fields = ["name", "category", "size", "weigth", "color","price", "description", "image"]
+        fields = ["name", "category", "size", "weigth",
+                  "color", "price", "description", "image"]
+
 
 class QuestionForm(forms.Form):
-    user_from = forms.CharField(
-        label="usuario",
-        required=True,
-        widget=forms.TextInput(
-            attrs={  
-                "placeholder": "usuario",
-                "required": "True",
-            }
-        ),
-    )
-   
-    comment = forms.CharField(
-        label="cometarios",
-        required=True,
+    question_text = forms.CharField(
+        label="",
+        required=False,
+        max_length=500,
+        min_length=10,
+        strip=True,
         widget=forms.Textarea(
             attrs={
-                "placeholder": "cometarios",
+                "class": "question-text",
+                "placeholder": "Ingrese su pregunta...",
                 "required": "True",
+                "max_length": 500,
+                "min_length": 10,
+                "rows": 2,
+                "cols": 10,
+                "style": "min-width: 100%",
             }
         ),
     )
-    class Meta:
-        model = Question

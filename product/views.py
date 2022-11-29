@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from product.forms import ProductForm, QuestionForm
-from product.models import Product,Question
+from product.models import Product, Question
 
 
 # Create your views here.
@@ -19,7 +19,20 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
+    template_name = "product/product_detail.html"
     fields = ["name", "description","image"]
+
+    def get(self, request, pk):
+        product = Product.objects.get(id=pk)
+        questions = Question.objects.filter(product=product).order_by("-updated_at")
+        question_form = QuestionForm()
+        context = {
+            "product": product,
+            "questions": questions,
+            "question_form": question_form,
+        }
+        return render(request, self.template_name, context)
+  
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
@@ -59,50 +72,21 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("product:product-list")
 
-
-class QuestionListView(ListView):
-    model = Question
-    paginate_by = 5
-
-class QuestionDetailView(DetailView):
-    model = Question
-    fields = ["name", "description"]
-
 class QuestionCreateView(LoginRequiredMixin, CreateView):
-    model = Question
-    success_url = reverse_lazy("product:Question-list")
-
-    form_class = QuestionForm
-
-    def form_valid(self, form):
-        """Filter to avoid duplicate Question"""
-        data = form.cleaned_data
-        actual_objects = Question.objects.filter(name=data["name"]).count()
-        if actual_objects:
-            messages.error(
-                self.request,
-                f"La pregunta {data['name']} ya fue formulada",
-            )
-            form.add_error("name", ValidationError("Acción no válida"))
-            return super().form_invalid(form)
-        else:
-            messages.success(
-                self.request,
-                f"pregunta: {data['name']}. enviada!",
-            )
-            return super().form_valid(form)
-
-class QuestionUpdateView(LoginRequiredMixin, UpdateView):
-    model = Question
-    fields = ["name", "description"]
-
-    def get_success_url(self):
-        Question_id = self.kwargs["pk"]
-        return reverse_lazy("product:Question-detail", kwargs={"pk": Question_id})
+    def post(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        questionNew = Question(
+            question=request.POST["question_text"], user_from=request.user, product=product
+        )
+        questionNew.save()
+        return redirect(reverse("product:product-detail", kwargs={"pk": pk}))
 
 
 class QuestionDeleteView(LoginRequiredMixin, DeleteView):
     model = Question
-    success_url = reverse_lazy("product:Question-list")    
+
+    def get_success_url(self):
+        product = self.object.product
+        return reverse("product:product-detail", kwargs={"pk": product.id})
 
 
