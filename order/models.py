@@ -8,7 +8,7 @@ from configuration.models import OrderState
 
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
-    user_from = models.ForeignKey(User)
+    user_from = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -19,9 +19,9 @@ class Order(models.Model):
     
 class OrderDetail(models.Model):
     id = models.AutoField(primary_key=True)
-    order_id = models.ForeignKey(Order)
-    product_id = models.ForeignKey(Product)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    status = models.ForeignKey(OrderState)
-    user_to = models.ForeignKey(User)
+    status =  models.ForeignKey(OrderState, on_delete=models.CASCADE)
+    user_to = models.ForeignKey(User, on_delete=models.CASCADE)
     price_order = models.DecimalField(decimal_places=2, max_digits=11)

@@ -8,7 +8,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from dashboard.forms import UserInfoform
+from dashboard.forms import UserInfoForm
 from dashboard.models import UserInfo
 
 from dashboard.forms import UserQualification
@@ -26,7 +26,7 @@ def statics(request):
 # Views User Info
 class UserInfoDetailView(DetailView):
     model = UserInfo
-    fields = ["user-name", "email"]
+    fields = ["phone", "address"]
 
 class UserInfoCreateView(LoginRequiredMixin, CreateView):
     model = UserInfo

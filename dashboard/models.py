@@ -9,7 +9,7 @@ class UserInfo(models.Model):
     phone = models.CharField(max_length=20)
     document = models.IntegerField()
     document_type = models.CharField(max_length=30)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='users_photo', null=True, blank=True)
 
     class Meta:
@@ -21,9 +21,9 @@ class UserInfo(models.Model):
     
 class UserQualification(models.Model):
     id = models.AutoField(primary_key=True)
-    user_from = models.ForeignKey(User)
-    user_to = models.ForeignKey(User)
-    score = models.ForeignKey(Score)
+    user_from = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_to = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.ForeignKey(Score, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.user_from} rated {self.user_to} = {self.score}'

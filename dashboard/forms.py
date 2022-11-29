@@ -5,7 +5,7 @@ from dashboard.models import UserInfo
 from dashboard.models import UserQualification
 
 
-class UserInfoform(forms.ModelForm):
+class UserInfoForm(forms.ModelForm):
     phone = forms.IntegerField(
         label = "numero de celular",
         required= False,
@@ -16,10 +16,10 @@ class UserInfoform(forms.ModelForm):
             }
         )
     )
-    address = forms.IntegerField(
+    address = forms.CharField(
         label = "Direccion",
         required= False,
-        widget= forms.CharField(
+        widget= forms.TextInput(
             attrs={
                 "placeholder": "Direccion",
                 "required": "True",
@@ -27,7 +27,7 @@ class UserInfoform(forms.ModelForm):
         )
     )
 
-    photo = forms.ImageField
+    photo = forms.ImageField()
         
 
     document = forms.IntegerField(
@@ -57,7 +57,7 @@ class UserInfoform(forms.ModelForm):
         fields = ["phone", "address", "document", "document-type", "photo"]
 
 class UserQualificationForm(forms.ModelForm):
-    phone = forms.IntegerField(
+    score = forms.IntegerField(
         label = "Calificacion",
         required= False,
         widget= forms.NumberInput(
@@ -69,4 +69,4 @@ class UserQualificationForm(forms.ModelForm):
     )
     class Meta:
         model = UserQualification
-        fields = ["UserQualification"]
+        fields = ["score", "userFrom"]
