@@ -1,0 +1,79 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Product detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    
+    {% if product.image %}
+        <div style="text-align: center;">
+            <img height="250px" src="{{ product.image.url }}">
+        </div>
+    {% endif %}
+
+    <h3 class="post-subtitle">
+        Nombre: {{ product.name }}
+        
+    </h3>
+    <h3 class="post-subtitle">
+        Categoria: {{ product.category }}
+        
+    </h3>
+    <h3 class="post-subtitle">
+        Talla: {{ product.size }}
+        
+    </h3>
+    <h3 class="post-subtitle">
+        Peso: {{ product.weigth }}
+        
+    </h3>
+    <h3 class="post-subtitle">
+        Color: {{ product.color }}
+        
+    </h3>
+    <h3 class="post-subtitle">
+        Precio: {{ product.price }}
+        
+    </h3>
+    <h3 class="post-subtitle">
+        descripcion: {{ product.description|safe }}
+        
+    </h3>
+    
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'product:product-update' product.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Producto
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'product:product-delete' product.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Producto
+        </a>
+    </p>
+    <!-- Divider-->
+    <hr class="my-4" />
+
+    <!-- Question creation -->
+    <form method="POST" action="{% url 'product:question-create' product.id %}">
+        {% csrf_token %}
+        {{ question_form }}
+    <input type="submit" value="Enviar Pregunta">
+    </form>
+    {% if not questions %}
+        <p></p>
+    {% endif %}
+
+    <!-- Question list -->
+    {% for question in questions %}
+        <p> {{ question.question }}
+            ({{ question.user_from.username }} | {{ question.updated_at }})
+            {% if user == question.user_from or user.is_superuser %}
+            <a href="{% url 'product:question-delete' question.id %}"><i class="fa fa-trash" style="color: #881a1a;"></i></a>
+            {% endif %}
+        </p>
+    {% endfor %}
+</div>
+{% endblock %}
