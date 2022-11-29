@@ -61,7 +61,8 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
-    fields = ["name", "description"]
+    fields = ["name", "category", "size", "weigth",
+                  "color", "price", "description", "image"]
 
     def get_success_url(self):
         product_id = self.kwargs["pk"]

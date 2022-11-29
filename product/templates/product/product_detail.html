@@ -39,13 +39,10 @@
         
     </h3>
     <h3 class="post-subtitle">
-        descripcion: {{ product.description }}
+        descripcion: {{ product.description|safe }}
         
     </h3>
     
-    <p class="card-text">
-        {{ product.description|safe}}
-    </p>
     <hr class="my-4">
     <p style="text-align: center">
         <a href="{% url 'product:product-update' product.id %}">
