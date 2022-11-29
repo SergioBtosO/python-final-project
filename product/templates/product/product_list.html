@@ -1,0 +1,29 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    product list
+{% endblock %}
+
+{% block app_content %} 
+<a class="button_custom" href="{% url 'product:product-add' %}">Crear nuevo producto</a>
+<hr class="my-4" />
+{% for product in product_list %}
+{% if product.user == user or user.is_superuser %}
+<!-- Post preview-->
+<div class="card" style="width: 18rem;">
+    <img height="250px" src="{{ product.image.url}}">
+    <div class="card-body">
+      <h5 class="card-title"> Nombre:  {{ product.name }}
+        {% if user.is_superuser %}
+        - <h2 class="post-title"> Dueño:  {{ product.user.username }}</h2>
+        {% endif %}
+    </h5>
+      <p class="card-text">{{product}}</p>
+      <a href="{% url 'product:product-detail' product.id %}" class="btn btn-primary">Ver Más</a>
+    </div>
+  </div>
+<!-- Divider-->
+<hr class="my-4" />
+{% endif %}
+{% endfor %}
+{% endblock %}
