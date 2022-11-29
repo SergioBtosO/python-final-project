@@ -1,0 +1,19 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Score form
+{% endblock %}
+
+{% block app_content %} 
+
+<div>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }} <!-- ckeditor-->
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary" value="aceptar Orden" />
+    </form>
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+{% endblock %}

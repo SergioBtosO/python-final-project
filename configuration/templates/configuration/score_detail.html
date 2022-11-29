@@ -1,0 +1,28 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    Score detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    <h3 class="post-subtitle">
+        Nombre: {{ score.name }}
+        
+    </h3>
+    <p class="card-text">
+        {{ score.description|safe}}
+    </p>
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'configuration:score-update' score.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Calificacion
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'configuration:score-delete' score.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Calificacion
+        </a>
+    </p>
+</div>
+{% endblock %}

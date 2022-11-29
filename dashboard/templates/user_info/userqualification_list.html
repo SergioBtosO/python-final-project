@@ -1,15 +1,15 @@
 {% extends "dashboard/template.html" %}
 
 {% block app_header %}  
-    User info list
+UserQualification list
 {% endblock %}
 
 {% block app_content %} 
-{% for user_info in User_info_list %}
+{% for user_qualification in user_qualification %}
 <!-- Post preview-->
 <div class="post-preview">
-    <a href="{% url 'configuration:user-info-detail' user-info.id %}">
-        <h2 class="post-title"> Nombre:  {{ user.name }}</h2>
+    <a href="{% url 'dashboard:User_qualification-detail' User_qualification.id %}">
+        <h2 class="post-title"> Nombre:  {{ UserQualification.name }}</h2>
         
     </a>
    

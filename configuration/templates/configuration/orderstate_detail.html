@@ -12,15 +12,15 @@
         
     </h3>
     <p class="card-text">
-        {{ categoryproduct.description|safe}}
+        {{ orderstate.description|safe}}
     </p>
     <hr class="my-4">
     <p style="text-align: center">
-        <a href="{% url 'configuration:category-product-update' categoryproduct.id %}">
+        <a href="{% url 'configuration:order-state-update' order-state.id %}">
             <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Categoria
         </a>
         &ensp; | &ensp;
-        <a href="{% url 'configuration:category-product-delete' categoryproduct.id %}">
+        <a href="{% url 'configuration:order-state-delete' order-state.id %}">
             <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Categoria
         </a>
     </p>

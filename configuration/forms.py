@@ -63,3 +63,31 @@ class OrderStateform(forms.ModelForm):
         fields = ['name', 'description', 'state']  
 
 
+class Scoreform(forms.ModelForm):
+    name = forms.CharField(
+        label="calificacion",
+        max_length=30,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "calificacion",
+                "required": "True",
+            }
+        ),
+    )
+
+    description = forms.CharField(
+        label="Descripción:",
+        required=False,
+        widget=CKEditorWidget(),
+    )
+
+    value= forms.IntegerField(
+        label="valor:",
+        required=False,
+        widget=CKEditorWidget(),
+    )
+
+    class Meta:
+        model = Score
+        fields = ['name', 'description', 'value']  

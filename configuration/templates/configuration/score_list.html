@@ -1,15 +1,15 @@
 {% extends "dashboard/template.html" %}
 
 {% block app_header %}  
-    User info list
+    Score list
 {% endblock %}
 
 {% block app_content %} 
-{% for user_info in User_info_list %}
+{% for score in score_list %}
 <!-- Post preview-->
 <div class="post-preview">
-    <a href="{% url 'configuration:user-info-detail' user-info.id %}">
-        <h2 class="post-title"> Nombre:  {{ user.name }}</h2>
+    <a href="{% url 'configuration:score-detail' score.id %}">
+        <h2 class="post-title"> Nombre:  {{ score.name }}</h2>
         
     </a>
    

@@ -11,6 +11,18 @@
         Nombre: {{ userinfo.name }}
         
     </h3>
-    
+    <p class="card-text">
+        {{ userinfo.description|safe}}
+    </p>
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'dashboard:user-info-update' userinfo.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Categoria
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'dashboard:user-info-delete' user-info.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Categoria
+        </a>
+    </p>
 </div>
 {% endblock %}

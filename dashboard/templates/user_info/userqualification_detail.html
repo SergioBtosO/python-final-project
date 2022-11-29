@@ -1,0 +1,28 @@
+{% extends "dashboard/template.html" %}
+
+{% block app_header %}  
+    User qualification detail
+{% endblock %}
+
+{% block app_content %} 
+
+<div class="post-preview">
+    <h3 class="post-subtitle">
+        Nombre: {{ Userqualification.name }}
+        
+    </h3>
+    <p class="card-text">
+        {{ Userqualification.description|safe}}
+    </p>
+    <hr class="my-4">
+    <p style="text-align: center">
+        <a href="{% url 'dashboard:User-qualification-update' User-qualification.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar calificacion
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'dashboard:User-qualification-delete' User-qualification.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar calificacion
+        </a>
+    </p>
+</div>
+{% endblock %}
