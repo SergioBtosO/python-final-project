@@ -1,10 +1,10 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
-from configuration.models import CategoryProduct, OrderState
+from configuration.models import CategoryProduct, Score, OrderState 
 
 
-class CategoryProductform(forms.ModelForm):
+class CategoryProductForm(forms.ModelForm):
     name = forms.CharField(
         label="Nombre categoria",
         max_length=30,
@@ -25,17 +25,59 @@ class CategoryProductform(forms.ModelForm):
 
     class Meta:
         model = CategoryProduct
-        fields = ['name', 'description']     
+        fields = ['name', 'description']
 
 
-class OrderStateform(forms.ModelForm):
+class ScoreForm(forms.ModelForm):
     name = forms.CharField(
-        label="Nombre producto",
+        label="Nombre",
         max_length=30,
         required=False,
         widget=forms.TextInput(
             attrs={
+                "placeholder": "Nombre",
+                "required": "True",
+            }
+        ),
+    )
+
+    value = forms.IntegerField(
+        label="Valor:",
+        required=False,
+        widget=forms.NumberInput(
+            attrs={
+                "placeholder": "Valor",
                 "placeholder": "Nombre producto",
+                "required": "True",
+            }
+        ),
+    ) 
+    
+
+    description = forms.CharField(
+        label="Descripción:",
+        required=False,
+        widget=CKEditorWidget(
+            attrs={
+                "placeholder": "Descripción",
+                "required": "True",
+            }
+        ),
+    )
+
+    class Meta:
+        model = Score
+        fields = ['name', 'value', 'description']
+        widget=CKEditorWidget(),
+    
+class OrderStateForm(forms.ModelForm):
+    name = forms.CharField(
+        label="Nombre",
+        max_length=30,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Nombre",
                 "required": "True",
             }
         ),
@@ -44,9 +86,15 @@ class OrderStateform(forms.ModelForm):
     description = forms.CharField(
         label="Descripción:",
         required=False,
-        widget=CKEditorWidget(),
+        widget=CKEditorWidget(
+            attrs={
+                "placeholder": "Descripción",
+                "required": "True",
+            }
+        ),
     )
 
+    
     state = forms.BooleanField(
         label="Habilitado:",
         required=False,
