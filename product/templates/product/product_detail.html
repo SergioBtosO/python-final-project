@@ -8,10 +8,19 @@
 
 <div class="post-preview">
     
+    {% if product.image %}
+        <div style="text-align: center;">
+            <img height="250px" src="{{ product.image.url }}">
+        </div>
+    {% endif %}
+
     <h3 class="post-subtitle">
         Nombre: {{ product.name }}
-        
     </h3>
+    <h5 class="post-subtitle">
+        Tamaño: {{ product.size }}
+    </h5>
+
     <p class="card-text">
         {{ product.description|safe}}
     </p>
